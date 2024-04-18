@@ -1,11 +1,13 @@
-def flatten_extend(matrix):
-  flat_list = []
-  for row in matrix:
-    flat_list.extend(row)
-  return flat_list
+def deep_flatten_list(nested_lst):
+    flattened = []
+    for item in nested_lst:
+        if isinstance(item, type([])):
+            flattened.extend(deep_flatten_list(item))
+        else:
+            flattened.append(item)
+    return flattened
 
-list = [[1,'a',['cat'],2],[[[3]],'dog'],4,5]
+nested_list = [[1, 'a', ['cat'], 2], [[[3]], 'dog'], 4, 5]
 
-flattened = flatten_extend(list)
-
-print(flattened)
+flattened_list = deep_flatten_list(nested_list)
+print(flattened_list)
